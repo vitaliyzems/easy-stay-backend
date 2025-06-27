@@ -12,9 +12,18 @@ mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
   console.log(`Connected to MongoDB`);
 });
 
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://easy-stay-react.vercel.app',
+      'https://easy-stay-backend-s7ne.onrender.com',
+    ],
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
 
 app.use('/api', routes);
 
