@@ -8,10 +8,6 @@ const cors = require('cors');
 
 const app = express();
 
-mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
-  console.log(`Connected to MongoDB`);
-});
-
 app.use(
   cors({
     origin: [
@@ -22,6 +18,11 @@ app.use(
     credentials: true,
   })
 );
+
+mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
+  console.log(`Connected to MongoDB`);
+});
+
 app.use(cookieParser());
 app.use(express.json());
 
